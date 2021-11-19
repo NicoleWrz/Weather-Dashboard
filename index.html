@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+  </head>
+
+<body>
+  <header>
+      <h1>Weather Dashboard</h1>
+  </header>
+  <div class="flex-row justify-space-between">
+    <div class="col-12 col-md-3">
+      <div class="card">
+        <h3 class="card-header text-uppercase">Search for a City</h3>
+        <form id="user-form" class="card-body">
+          <input id="search-box" id="search" placeholder="Los Angeles" type="text" class="form-input" />
+          <button class="searchBtn">Button</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="weather-container"></div>
+
+  
+<script src="./assets/js/script.js"></script>
+
+</body>
+</html>
