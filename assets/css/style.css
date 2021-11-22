@@ -24,3 +24,15 @@ header {
     cursor: pointer;
     display: flex;
 }
+
+.low {
+    background-color: green;
+}
+
+.moderate {
+    background-color: yellow;
+}
+
+.severe {
+    background-color: red;
+}
