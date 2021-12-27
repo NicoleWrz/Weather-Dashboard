@@ -1,20 +1,40 @@
 const apiKey = "d1eb7ebd43f759fd8893dc27cdfd251e";
 const oneCallAPIKey = "872d8e1363e835e7e9e7bf016311f721";
-let searchBtn = document.querySelector(".searchBtn");
+let searchBtn = document.querySelector(".search-btn");
 let searchBox = document.querySelector("#search-box");
 let cityName;
 let weatherContainer = document.querySelector(".weather-container");
 let futureForcast = document.querySelector(".future-forcast");
 
+displayHistory();
+
 searchBtn.addEventListener("click",function () {
     event.preventDefault();
     cityName = searchBox.value;
+    weatherContainer.innerHTML="";
+    futureForcast.innerHTML="";
     getWeather();
+
+    let storedHistory = JSON.parse(localStorage.getItem("history")) || [];
+
+    storedHistory.push(cityName);
+    localStorage.setItem("history", JSON.stringify(storedHistory));
+
+    displayHistory();
 })
 
 var today = moment();
 $(".current-date").text(today.format("MMMM Do, YYYY"));
 
+function displayHistory() {
+    let history = JSON.parse(localStorage.getItem("history")) || [];
+
+    for (let i = 0; i < history.length;i++) {
+        let historyEl = document.createElement("li");
+        historyEl.textContent = history[i];
+        document.querySelector(".history").append(historyEl);
+    }
+}
 
 function showTemp(temperature) {
     let tempEl = document.createElement("h5");
@@ -51,27 +71,32 @@ function getFiveDayForecast(daily) {
         console.log((daily[i].temp.day - 273.15) * 9 / 5 + 32);
         console.log(daily[i].humidity);
         console.log(daily[i].wind_speed);
-        console.log(daily[i].weather.icon);
+        console.log(daily[i].weather[0].icon);
+
+        let fiveDayDiv = document.createElement("div");
+        fiveDayDiv.classList.add("five-day");
 
         let fiveDayTempEl = document.createElement("h4");
         let fiveDayTemp = (daily[i].temp.day - 273.15) * 9 / 5 + 32;
         fiveDayTempEl.textContent = fiveDayTemp.toFixed(2);
         fiveDayTempEl.textContent = "Temperature: " + fiveDayTemp.toFixed(2) + " °F";
-        futureForcast.append(fiveDayTempEl);
+        fiveDayDiv.append(fiveDayTempEl);
 
-        let fiveDayHumidity = document.createElement("h4");
+        let fiveDayHumidity = document.createElement("p");
         fiveDayHumidity.textContent = daily[i].humidity;
         fiveDayHumidity.textContent = "Humidity: " + daily[i].wind_speed + " %";
-        futureForcast.append(fiveDayHumidity);
+        fiveDayDiv.append(fiveDayHumidity);
 
-        let fiveDayWind = document.createElement("h4");
+        let fiveDayWind = document.createElement("p");
         fiveDayWind.textContent = daily[i].wind_speed;
         fiveDayWind.textContent = "Wind Speed: " + daily[i].wind_speed + " MPH";
-        futureForcast.append(fiveDayWind);
+        fiveDayDiv.append(fiveDayWind);
 
-        let fiveDayIcon = document.createElement("h4");
-        fiveDayIcon.textContent = daily[i].weather.icon;
-        futureForcast.append(fiveDayIcon);
+        let fiveDayIcon = document.createElement("img");
+        fiveDayIcon.src = "https://openweathermap.org/img/wn/" + daily[i].weather[0].icon + ".png";
+        fiveDayDiv.append(fiveDayIcon);
+
+        futureForcast.append(fiveDayDiv);
     }
 }
 
@@ -94,6 +119,8 @@ function getWeather() {
                 let humidity = weather.current.humidity;
                 let windSpeed = weather.current.wind_speed;
                 let uvi = weather.current.uvi;
+                let icon = weather.current.weather[0].icon;
+                console.log(icon)
         
                 showTemp(temperature);
                 showHumidity(humidity);
@@ -104,4 +131,3 @@ function getWeather() {
             })
     });
 }
-
