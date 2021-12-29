@@ -37,5 +37,30 @@ header {
     background-color: red;
 }
 
+/* .card-body{
+    height: auto;
+    width: auto;
+} */
+
+.future-forcast {
+    margin-left: 150px;
+}
+
 .five-day {
+    text-align: center;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    border: 2px solid black;
+    color: black;
+    padding: 10px;
+    display: inline-block;
+    margin: 1%;
+    background-color: rgb(169, 199, 255);
+}
+
+.history {
+    color: blue;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
 }

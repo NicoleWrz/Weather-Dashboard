@@ -10,30 +10,48 @@ displayHistory();
 
 searchBtn.addEventListener("click",function () {
     event.preventDefault();
+
+    if (searchBox.value == ""){
+        return
+    }
+
     cityName = searchBox.value;
-    weatherContainer.innerHTML="";
-    futureForcast.innerHTML="";
-    getWeather();
+
+    displayWeather();
 
     let storedHistory = JSON.parse(localStorage.getItem("history")) || [];
 
-    storedHistory.push(cityName);
-    localStorage.setItem("history", JSON.stringify(storedHistory));
-
-    displayHistory();
+    if (storedHistory.indexOf(cityName) == -1){
+        storedHistory.push(cityName);
+        localStorage.setItem("history", JSON.stringify(storedHistory));
+        displayHistory();
+    }
 })
 
 var today = moment();
 $(".current-date").text(today.format("MMMM Do, YYYY"));
 
-function displayHistory() {
-    let history = JSON.parse(localStorage.getItem("history")) || [];
+function displayWeather() {
+    weatherContainer.innerHTML="";
+    futureForcast.innerHTML="";
+    getWeather();
+}
 
-    for (let i = 0; i < history.length;i++) {
-        let historyEl = document.createElement("li");
-        historyEl.textContent = history[i];
-        document.querySelector(".history").append(historyEl);
+function displayHistory() {
+    let storage = JSON.parse(localStorage.getItem("history")) || [];
+    let historyEl = document.querySelector(".history");
+    historyEl.innerHTML="";
+    for (let i = 0; i < storage.length;i++) {
+        let historyLi = document.createElement("li");
+        historyLi.textContent = storage[i];
+        historyLi.addEventListener("click", historyEventListener );
+        historyEl.append(historyLi);
     }
+}
+
+function historyEventListener(){
+    cityName = event.target.textContent;
+    displayWeather();
 }
 
 function showTemp(temperature) {
@@ -42,17 +60,17 @@ function showTemp(temperature) {
     weatherContainer.append(tempEl);
 }
 function showHumidity(humidity){
-    let humidityEl = document.createElement("h5");
+    let humidityEl = document.createElement("h6");
     humidityEl.textContent = "Humidity: " + humidity + " %";
     weatherContainer.append(humidityEl);
 }
 function showWind(windSpeed){
-    let windEl = document.createElement("h5");
+    let windEl = document.createElement("h6");
     windEl.textContent = "Wind Speed: " + ((windSpeed * 2.236936).toFixed(2)) + "MPH";
     weatherContainer.append(windEl);
 }
 function showUvi(uvIndex){
-    let uviEl = document.createElement("h5");
+    let uviEl = document.createElement("h6");
     uviEl.textContent = "UV Index: " + uvIndex;
     weatherContainer.append(uviEl);
     if (uvIndex <= 2) {
@@ -84,7 +102,7 @@ function getFiveDayForecast(daily) {
 
         let fiveDayHumidity = document.createElement("p");
         fiveDayHumidity.textContent = daily[i].humidity;
-        fiveDayHumidity.textContent = "Humidity: " + daily[i].wind_speed + " %";
+        fiveDayHumidity.textContent = "Humidity: " + daily[i].humidity + " %";
         fiveDayDiv.append(fiveDayHumidity);
 
         let fiveDayWind = document.createElement("p");
