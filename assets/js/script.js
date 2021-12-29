@@ -126,7 +126,7 @@ function getFiveDayForecast(daily) {
 }
 
 function getWeather() {
-    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey)
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey)
     .then(function (response) {
         return response.json();
     })
@@ -134,7 +134,7 @@ function getWeather() {
         console.log("data", data);
             let lat = data.coord.lat;
             let lon = data.coord.lon;
-            fetch("http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=" + oneCallAPIKey)
+            fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon +"&appid=" + oneCallAPIKey)
             .then(function (latAndLon) {
                 return latAndLon.json();
             })
