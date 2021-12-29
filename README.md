@@ -18,7 +18,7 @@ cities for users to click on whenever they need that information again.
 
 
 ## Screenshot
-![]()
+![](https://github.com/NicoleWrz/Weather-Dashboard/blob/52cb3a6e5042fd8a2098d20aba4781b01c2d94ae/assets/images/weatherSS.png)
   
 ## Deployed-Link
 [Weather Dashboard](https://nicolewrz.github.io/Weather-Dashboard/)
