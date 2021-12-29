@@ -10,10 +10,15 @@
  - [Questions](#Questions)
 
 ## Description
-This project is a CMS-style blog site where developers can publish their blog posts and comment on other developers’ posts as well. This app follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
+This project uses [OpenWeather One Call Api](https://openweathermap.org/api/one-call-api) to retreieve weather data for any city that a user wants.
+When a user searches for a city, they are presented with the current weather that includes the date, temperature, humidity, wind speed and UV index. The
+UV index color changes based on the conditions, green = favorable, yellow = moderate, red = severe. The future forcasts for the next 5 days also populates
+including date, temperature, humidity, wind sleep and an icon representation of weather conditions. Local storage is also used to save previous searched 
+cities for users to click on whenever they need that information again. 
+
 
 ## Screenshot
-![](https://github.com/NicoleWrz/Tech-Blog/blob/dade7a891e6cc20e25e7a54222a67017065b62f6/public/techblog%20SS.png)
+![]()
   
 ## Deployed-Link
 [Weather Dashboard](https://nicolewrz.github.io/Weather-Dashboard/)
