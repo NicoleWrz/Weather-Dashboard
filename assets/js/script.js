@@ -42,7 +42,8 @@ function displayHistory() {
     let historyEl = document.querySelector(".history");
     historyEl.innerHTML="";
     for (let i = 0; i < storage.length;i++) {
-        let historyLi = document.createElement("li");
+        let historyLi = document.createElement("button");
+        historyLi.classList.add("btn-primary", "row",);
         historyLi.textContent = storage[i];
         historyLi.addEventListener("click", historyEventListener );
         historyEl.append(historyLi);
@@ -94,7 +95,13 @@ function getFiveDayForecast(daily) {
         let fiveDayDiv = document.createElement("div");
         fiveDayDiv.classList.add("five-day");
 
-        let fiveDayTempEl = document.createElement("h4");
+        var futureDatesEl = document.createElement("h4");
+        var futureDatesText = moment.unix(daily[i].dt).format("l");
+        console.log(futureDatesText)
+        futureDatesEl.textContent = futureDatesText;
+        fiveDayDiv.append(futureDatesEl);
+
+        let fiveDayTempEl = document.createElement("h5");
         let fiveDayTemp = (daily[i].temp.day - 273.15) * 9 / 5 + 32;
         fiveDayTempEl.textContent = fiveDayTemp.toFixed(2);
         fiveDayTempEl.textContent = "Temperature: " + fiveDayTemp.toFixed(2) + " °F";

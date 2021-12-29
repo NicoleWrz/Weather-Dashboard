@@ -25,6 +25,10 @@ header {
     display: flex;
 }
 
+.search-btn:hover {
+    background-color: rgb(0, 101, 216);
+}
+
 .low {
     background-color: green;
 }
@@ -36,11 +40,6 @@ header {
 .severe {
     background-color: red;
 }
-
-/* .card-body{
-    height: auto;
-    width: auto;
-} */
 
 .future-forcast {
     margin-left: 150px;
@@ -59,8 +58,5 @@ header {
 }
 
 .history {
-    color: blue;
-    text-decoration: underline;
-    font-weight: bold;
-    cursor: pointer;
+    margin-left: 100px
 }
