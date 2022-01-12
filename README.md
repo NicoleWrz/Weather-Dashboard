@@ -10,7 +10,7 @@
  - [Questions](#Questions)
 
 ## Description
-This project uses [OpenWeather One Call Api](https://openweathermap.org/api/one-call-api) to retreieve weather data for any city that a user wants.
+This project uses [OpenWeather One Call Api](https://openweathermap.org/api/one-call-api) to retrieve weather data for any city that a user wants.
 When a user searches for a city, they are presented with the current weather that includes the date, temperature, humidity, wind speed and UV index. The
 UV index color changes based on the conditions, green = favorable, yellow = moderate, red = severe. The future forcasts for the next 5 days also populates
 including date, temperature, humidity, wind sleep and an icon representation of weather conditions. Local storage is also used to save previous searched 
